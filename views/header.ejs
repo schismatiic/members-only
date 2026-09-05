@@ -3,13 +3,42 @@
         <h1 class="text-2xl font-extralight tracking-[0.35em]">Корова</h1>
     </a>
     <div class="flex items-center gap-2 md:gap-4">
-        <a href="<%= firstRoute %>"
-            class="text-white border border-white/20 px-4 py-1 cursor-pointer hover:bg-gray-900 active:scale-95">
-            <%= first%>
-        </a>
-        <a href="/<%= secondRoute %>"
-            class="bg-white border border-white/20 text-black px-4 py-1 cursor-pointer hover:bg-white/90 active:scale-95">
-            <%= second%>
-        </a>
+        <% if (auth==="log-in" ) { %>
+            <a href="/"
+                class="text-white border border-white/20 px-4 py-1 cursor-pointer hover:bg-gray-900 active:scale-95">
+                Home
+            </a>
+            <a href="sign-up"
+                class="bg-white border border-white/20 text-black px-4 py-1 cursor-pointer hover:bg-white/90 active:scale-95">
+                Sign Up
+            </a>
+            <% } else if (auth==="sign-up" ) { %>
+                <a href="/"
+                    class="text-white border border-white/20 px-4 py-1 cursor-pointer hover:bg-gray-900 active:scale-95">
+                    Home
+                </a>
+                <a href="log-in"
+                    class="bg-white border border-white/20 text-black px-4 py-1 cursor-pointer hover:bg-white/90 active:scale-95">
+                    Log In
+                </a>
+                <% } else if (!user) { %>
+                    <a href="auth/log-in"
+                        class="text-white border border-white/20 px-4 py-1 cursor-pointer hover:bg-gray-900 active:scale-95">
+                        Log In
+                    </a>
+                    <a href="auth/sign-up"
+                        class="bg-white border border-white/20 text-black px-4 py-1 cursor-pointer hover:bg-white/90 active:scale-95">
+                        Sign Up
+                    </a>
+                    <% } else if (user) { %>
+                        <a href="mebership/become"
+                            class="text-white border border-white/20 px-4 py-1 cursor-pointer hover:bg-gray-900 active:scale-95">
+                            Become a member
+                        </a>
+                        <a href="auth/log-out"
+                            class="bg-white border border-white/20 text-black px-4 py-1 cursor-pointer hover:bg-white/90 active:scale-95">
+                            Log Out
+                        </a>
+                        <% } %>
     </div>
 </header>

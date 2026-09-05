@@ -84,11 +84,13 @@ const getSignUp = (req, res) => {
     lastName: "",
     username: "",
     email: "",
+    user: req.user,
   });
 };
 const getLogIn = (req, res) => {
   res.render("log-in", {
     identifier: "",
+    user: req.user,
   });
 };
 const getLogOut = (req, res, next) => {

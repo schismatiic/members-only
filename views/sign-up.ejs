@@ -9,7 +9,7 @@
 </head>
 
 <body class="flex flex-col min-h-screen bg-black text-white font-extralight">
-    <%- include('header', {firstRoute: "/" , secondRoute: "auth/log-in" , first: "Home" , second: "Log In" }) %>
+    <%- include('header', {user, auth: "sign-up" }) %>
 
         <h3 class="flex justify-center mt-4 text-2xl">
             Create an account

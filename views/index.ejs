@@ -9,9 +9,7 @@
 </head>
 
 <body class="flex flex-col min-h-screen bg-black text-white font-extralight">
-    <%- include('header', {firstRoute: locals.user ? "become-member" : "auth/log-in" , secondRoute: locals.user
-        ? "auth/log-out" : "auth/sign-up" , first: locals.user ? "Become a member" : "Log In" , second: locals.user
-        ? "Log Out" : "Sign Up" }) %>
+    <%- include('header', {user, auth: "index" }) %>
         <main class="flex flex-col md:flex-row flex-1 mt-2 ">
             <div class="p-4 m-4 border border-white/20 md:w-8/12">
                 <% if (messages.length!==0) { %>
@@ -22,7 +20,7 @@
                                     <p class="flex justify-center text-white/80">No messages yet.</p>
                                     <% } %>
             </div>
-            <%- include("membership-card", {user: locals.user}) %>
+            <%- include("membership-card", {user}) %>
         </main>
 
 
