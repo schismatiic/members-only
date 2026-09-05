@@ -35,7 +35,11 @@ const getIdentifier = async (identifier) => {
   );
   return rows[0];
 };
-
+const updateMembership = async (id) => {
+  await pool.query("UPDATE users SET membership_status = true WHERE id = $1", [
+    id,
+  ]);
+};
 module.exports = {
   getAllMessages,
   createSignUp,
@@ -43,4 +47,5 @@ module.exports = {
   getUserById,
   getEmail,
   getIdentifier,
+  updateMembership,
 };
