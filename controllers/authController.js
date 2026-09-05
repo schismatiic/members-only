@@ -1,9 +1,10 @@
 const db = require("../db/queries");
+const passport = require("../passport/passport");
 const bcrypt = require("bcryptjs");
 const { body, validationResult, matchedData } = require("express-validator");
 
 const lengthErr = "must be between 1 and 25 characters.";
-const lengthErr2 = "must be at least 8 characters.";
+const lengthErr2 = "must be at least 5 characters.";
 const validateCreateAccount = [
   body("firstName")
     .trim()
@@ -47,7 +48,7 @@ const validateCreateAccount = [
     .trim()
     .notEmpty()
     .withMessage("Password is required.")
-    .isLength({ min: 8 })
+    .isLength({ min: 5 })
     .withMessage(`Password ${lengthErr2}`),
   body("confirmPassword")
     .trim()
@@ -58,6 +59,24 @@ const validateCreateAccount = [
     })
     .withMessage("Passwords do not match."),
 ];
+const validateLogIn = [
+  body("identifier")
+    .trim()
+    .notEmpty()
+    .withMessage("Username or email is required"),
+  body("password").trim().notEmpty().withMessage("Password is required."),
+];
+const handleLogInValidation = (req, res, next) => {
+  const user = req.body;
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(400).render("log-in", {
+      errors: errors.array(),
+      identifier: user.identifier,
+    });
+  }
+  next();
+};
 
 const getSignUp = (req, res) => {
   res.render("sign-up", {
@@ -65,10 +84,18 @@ const getSignUp = (req, res) => {
     lastName: "",
     username: "",
     email: "",
-    password: "",
-    confirmPassword: "",
   });
 };
+const getLogIn = (req, res) => {
+  res.render("log-in", {
+    identifier: "",
+  });
+};
+const createLogIn = passport.authenticate("local", {
+  successRedirect: "/",
+  failureRedirect: "/auth/log-in",
+  failureMessage: true,
+});
 const createSignUp = async (req, res) => {
   const user = req.body;
   const errors = validationResult(req);
@@ -89,4 +116,12 @@ const createSignUp = async (req, res) => {
   res.redirect("/");
 };
 
-module.exports = { getSignUp, createSignUp, validateCreateAccount };
+module.exports = {
+  getSignUp,
+  getLogIn,
+  createLogIn,
+  createSignUp,
+  validateCreateAccount,
+  validateLogIn,
+  handleLogInValidation,
+};

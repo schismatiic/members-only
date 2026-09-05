@@ -9,24 +9,29 @@
 </head>
 
 <body class="flex flex-col min-h-screen bg-black text-white font-extralight">
-    <%- include('header', {firstRoute: "log-in" , secondRoute: "sign-up" , first: "Log In" , second: "Sign Up" }) %>
+    <%- include('header', {firstRoute: "auth/log-in" , secondRoute: "auth/sign-up" , first: "Log In" , second: "Sign Up"
+        }) %>
+        <% if (locals.user) {%>
+            <h1>WELCOME BACK <%= user.username %>
+            </h1>
+            <a href="/log-out">LOG OUT</a>
+            <% } else { %>
+                <main class="flex-1 mt-2">
+                    <div class="p-4 m-4 border border-white/20">
+                        <% if (messages.length!==0) { %>
+                            <% messages.forEach(message=> { %>
+                                <%= message.username %>
+                                    <% }); %>
+                                        <% } else {%>
+                                            <p class="flex justify-center text-white/80">No messages yet.</p>
+                                            <% } %>
 
-        <main class="flex-1 mt-2">
-            <div class="p-4 m-4 border border-white/20">
-                <% if (messages.length!==0) { %>
-                    <% messages.forEach(message=> { %>
-                        <%= message.username %>
-                            <% }); %>
-                                <% } else {%>
-                                    <p class="flex justify-center text-white/80">No messages yet.</p>
-                                    <% } %>
 
+                    </div>
 
-            </div>
-
-        </main>
-
-        <%- include('footer') %>
+                </main>
+                <%}%>
+                    <%- include('footer') %>
 
 </body>
 

@@ -3,11 +3,17 @@ const authRouter = Router();
 
 const {
   getSignUp,
+  getLogIn,
+  createLogIn,
   createSignUp,
   validateCreateAccount,
+  validateLogIn,
+  handleLogInValidation,
 } = require("../controllers/authController");
 
-authRouter.get("/", getSignUp);
-authRouter.post("/", validateCreateAccount, createSignUp);
+authRouter.get("/sign-up", getSignUp);
+authRouter.post("/sign-up", validateCreateAccount, createSignUp);
+authRouter.get("/log-in", getLogIn);
+authRouter.post("/log-in", validateLogIn, handleLogInValidation, createLogIn);
 
 module.exports = authRouter;

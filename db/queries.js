@@ -18,11 +18,29 @@ const getUsername = async (username) => {
   ]);
   return rows[0];
 };
+const getUserById = async (id) => {
+  const { rows } = await pool.query("SELECT * FROM users WHERE id = $1", [id]);
+  return rows[0];
+};
 const getEmail = async (email) => {
   const { rows } = await pool.query("SELECT * FROM users WHERE email = $1", [
     email,
   ]);
   return rows[0];
 };
+const getIdentifier = async (identifier) => {
+  const { rows } = await pool.query(
+    "SELECT * FROM users WHERE username = $1 OR email = $1",
+    [identifier],
+  );
+  return rows[0];
+};
 
-module.exports = { getAllMessages, createSignUp, getUsername, getEmail };
+module.exports = {
+  getAllMessages,
+  createSignUp,
+  getUsername,
+  getUserById,
+  getEmail,
+  getIdentifier,
+};

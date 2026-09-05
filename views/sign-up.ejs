@@ -9,14 +9,14 @@
 </head>
 
 <body class="flex flex-col min-h-screen bg-black text-white font-extralight">
-    <%- include('header', {firstRoute: "" , secondRoute: "log-in" , first: "Home" , second: "Log In" }) %>
+    <%- include('header', {firstRoute: "/" , secondRoute: "auth/log-in" , first: "Home" , second: "Log In" }) %>
 
         <h3 class="flex justify-center mt-4 text-2xl">
             Create an account
         </h3>
         <main class="flex flex-col flex-1 items-center">
-            <form action="/sign-up" method="POST"
-                class="flex flex-col w-full max-w-11/12 md:max-w-1/2 m-4 border border-white/20 p-4 gap-2">
+            <form action="/auth/sign-up" method="POST"
+                class="flex flex-col w-full max-w-11/12 md:max-w-5/12 m-4 border border-white/20 p-4 gap-2">
                 <label for="firstName">
                     First name
                 </label>
@@ -45,13 +45,13 @@
                     Password
                 </label>
                 <input name="password" id="password" class="border border-white/20  px-4 py-2" type="password"
-                    placeholder="********" value="<%= password || ''  %>" required>
+                    placeholder="********" required>
 
                 <label for="confirmPassword">
                     Confirm password
                 </label>
                 <input name="confirmPassword" id="confirmPassword" class="border border-white/20  px-4 py-2"
-                    type="password" placeholder="********" value="<%= confirmPassword || ''  %>" required>
+                    type="password" placeholder="********" required>
 
                 <button
                     class="bg-white text-black px-4 py-2 cursor-pointer hover:bg-white/90 active:scale-95 mt-4 w-fit"
