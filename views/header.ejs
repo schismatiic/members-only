@@ -3,7 +3,7 @@
         <h1 class="text-2xl font-extralight tracking-[0.35em]">Корова</h1>
     </a>
     <div class="flex items-center gap-2 md:gap-4">
-        <% if (auth==="log-in" ) { %>
+        <% if (route==="log-in" ) { %>
             <a href="/"
                 class="text-white border border-white/20 px-4 py-1 cursor-pointer hover:bg-gray-900 active:scale-95">
                 Home
@@ -12,7 +12,7 @@
                 class="bg-white border border-white/20 text-black px-4 py-1 cursor-pointer hover:bg-white/90 active:scale-95">
                 Sign Up
             </a>
-            <% } else if (auth==="sign-up" ) { %>
+            <% } else if (route==="sign-up" ) { %>
                 <a href="/"
                     class="text-white border border-white/20 px-4 py-1 cursor-pointer hover:bg-gray-900 active:scale-95">
                     Home
@@ -21,7 +21,7 @@
                     class="bg-white border border-white/20 text-black px-4 py-1 cursor-pointer hover:bg-white/90 active:scale-95">
                     Log In
                 </a>
-                <% } else if (!user) { %>
+                <% } else if (!user && route==="index" ) { %>
                     <a href="auth/log-in"
                         class="text-white border border-white/20 px-4 py-1 cursor-pointer hover:bg-gray-900 active:scale-95">
                         Log In
@@ -30,8 +30,8 @@
                         class="bg-white border border-white/20 text-black px-4 py-1 cursor-pointer hover:bg-white/90 active:scale-95">
                         Sign Up
                     </a>
-                    <% } else if (user) { %>
-                        <a href="mebership/become"
+                    <% } else if (user && route==="index" ) { %>
+                        <a href="membership/become"
                             class="text-white border border-white/20 px-4 py-1 cursor-pointer hover:bg-gray-900 active:scale-95">
                             Become a member
                         </a>
@@ -39,6 +39,15 @@
                             class="bg-white border border-white/20 text-black px-4 py-1 cursor-pointer hover:bg-white/90 active:scale-95">
                             Log Out
                         </a>
-                        <% } %>
+                        <% } else if (route==="become" ) { %>
+                            <a href="/"
+                                class="text-white border border-white/20 px-4 py-1 cursor-pointer hover:bg-gray-900 active:scale-95">
+                                Home
+                            </a>
+                            <a href="log-out"
+                                class="bg-white border border-white/20 text-black px-4 py-1 cursor-pointer hover:bg-white/90 active:scale-95">
+                                Log Out
+                            </a>
+                            <% } %>
     </div>
 </header>

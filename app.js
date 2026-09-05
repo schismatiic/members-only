@@ -25,7 +25,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.static("public"));
 
 app.use("/auth", authRouter);
-app.use("/membership", authRouter);
+app.use("/membership", membershipRouter);
 app.use("/", indexRouter);
 
 app.listen(3000, (error) => {

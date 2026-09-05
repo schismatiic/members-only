@@ -9,7 +9,7 @@
 </head>
 
 <body class="flex flex-col min-h-screen bg-black text-white font-extralight">
-    <%- include('header', {user, auth: "index" }) %>
+    <%- include('header', {user, route: "index" }) %>
         <main class="flex flex-col md:flex-row flex-1 mt-2 ">
             <div class="p-4 m-4 border border-white/20 md:w-8/12">
                 <% if (messages.length!==0) { %>

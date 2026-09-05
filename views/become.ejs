@@ -4,33 +4,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Корова | Log In</title>
+    <title>Корова | Become a member</title>
     <link rel="stylesheet" href="/output.css">
 </head>
 
 <body class="flex flex-col min-h-screen bg-black text-white font-extralight">
-    <%- include('header', {user, route: "log-in" }) %>
+    <%- include('header', {user, route: "become" }) %>
 
         <h3 class="flex justify-center mt-4 text-2xl">
-            Welcome to Корова
+            Become a member
         </h3>
         <main class="flex flex-col flex-1 items-center">
-            <form action="/auth/log-in" method="POST"
+            <form action="/membership/become" method="POST"
                 class="flex flex-col w-full max-w-11/12 md:max-w-5/12 m-4 border border-white/20 p-4 gap-2">
-                <label for="identifier">
-                    Username or email
-                </label>
-                <input name="identifier" id="identifier" class="border border-white/20  px-4 py-2" type="text"
-                    placeholder="alexdelarge" value="<%= identifier || ''  %>" required>
-
                 <label for="password">
-                    Password
+                    Member password
                 </label>
                 <input name="password" id="password" class="border border-white/20  px-4 py-2" type="password"
                     placeholder="********" required>
                 <button
                     class="bg-white text-black px-4 py-2 cursor-pointer hover:bg-white/90 active:scale-95 mt-4 w-fit"
-                    type="submit">Log In</button>
+                    type="submit">Join</button>
             </form>
             <% if (locals.errors) {%>
                 <ul class="m-4 border border-white/20 p-4 w-fit">
