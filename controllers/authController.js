@@ -91,6 +91,14 @@ const getLogIn = (req, res) => {
     identifier: "",
   });
 };
+const getLogOut = (req, res, next) => {
+  req.logout((err) => {
+    if (err) {
+      return next(err);
+    }
+    res.redirect("/");
+  });
+};
 const createLogIn = passport.authenticate("local", {
   successRedirect: "/",
   failureRedirect: "/auth/log-in",
@@ -119,6 +127,7 @@ const createSignUp = async (req, res) => {
 module.exports = {
   getSignUp,
   getLogIn,
+  getLogOut,
   createLogIn,
   createSignUp,
   validateCreateAccount,
