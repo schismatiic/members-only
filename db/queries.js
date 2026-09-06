@@ -46,6 +46,9 @@ const updateMembership = async (id) => {
     id,
   ]);
 };
+const updateAdmin = async (id) => {
+  await pool.query("UPDATE users SET admin_status = true WHERE id = $1", [id]);
+};
 module.exports = {
   getAllMessages,
   createSignUp,
@@ -55,4 +58,5 @@ module.exports = {
   getEmail,
   getIdentifier,
   updateMembership,
+  updateAdmin,
 };

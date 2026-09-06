@@ -24,8 +24,8 @@
                             <ul class="flex flex-col max-h-100 gap-2 overflow-y-auto">
                                 <% messages.forEach(msg=> { %>
                                     <li>
-                                        <%- include("message-card", {user, title: msg.title, message: msg.message,
-                                            author: msg.user }) %>
+                                        <%- include("message-card", {user, id: msg.id, title: msg.title, message:
+                                            msg.message, author: msg.user }) %>
                                     </li>
                                     <% }); %>
 

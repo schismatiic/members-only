@@ -15,8 +15,23 @@ const validateBecome = [
       return true;
     }),
 ];
+const validateAdmin = [
+  body("password")
+    .trim()
+    .notEmpty()
+    .withMessage("Admin password is required.")
+    .custom((value) => {
+      if (value !== process.env.ADMIN_PASSWORD) {
+        throw new Error("Incorrect admin password.");
+      }
+      return true;
+    }),
+];
 const getBecome = (req, res) => {
   res.render("become", { user: req.user });
+};
+const getAdmin = (req, res) => {
+  res.render("admin", { user: req.user });
 };
 const createBecome = async (req, res) => {
   const id = req.user.id;
@@ -29,5 +44,23 @@ const createBecome = async (req, res) => {
   await db.updateMembership(id);
   res.redirect("/");
 };
+const createAdmin = async (req, res) => {
+  const id = req.user.id;
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(400).render("admin", {
+      errors: errors.array(),
+    });
+  }
+  await db.updateAdmin(id);
+  res.redirect("/");
+};
 
-module.exports = { getBecome, createBecome, validateBecome };
+module.exports = {
+  getBecome,
+  getAdmin,
+  createBecome,
+  createAdmin,
+  validateBecome,
+  validateAdmin,
+};
