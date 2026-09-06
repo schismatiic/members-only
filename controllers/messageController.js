@@ -37,5 +37,15 @@ const createMessage = async (req, res) => {
   await db.createMessage(title, message, user.id);
   res.redirect("/");
 };
+const removeMessage = async (req, res) => {
+  const { id } = req.params;
+  await db.removeMessage(id);
+  res.redirect("/");
+};
 
-module.exports = { getCreateMessage, createMessage, validateMessage };
+module.exports = {
+  getCreateMessage,
+  createMessage,
+  removeMessage,
+  validateMessage,
+};

@@ -49,6 +49,9 @@ const updateMembership = async (id) => {
 const updateAdmin = async (id) => {
   await pool.query("UPDATE users SET admin_status = true WHERE id = $1", [id]);
 };
+const removeMessage = async (id) => {
+  await pool.query("DELETE FROM messages WHERE id = $1", [id]);
+};
 module.exports = {
   getAllMessages,
   createSignUp,
@@ -59,4 +62,5 @@ module.exports = {
   getIdentifier,
   updateMembership,
   updateAdmin,
+  removeMessage,
 };
