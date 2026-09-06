@@ -28,12 +28,21 @@ const validateAdmin = [
     }),
 ];
 const getBecome = (req, res) => {
+  if (!req.user) {
+    return res.status(403).send("Forbidden");
+  }
   res.render("become", { user: req.user });
 };
 const getAdmin = (req, res) => {
+  if (!req.user || !req.user.membership_status) {
+    return res.status(403).send("Forbidden");
+  }
   res.render("admin", { user: req.user });
 };
 const createBecome = async (req, res) => {
+  if (!req.user) {
+    return res.status(403).send("Forbidden");
+  }
   const id = req.user.id;
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
@@ -45,6 +54,9 @@ const createBecome = async (req, res) => {
   res.redirect("/");
 };
 const createAdmin = async (req, res) => {
+  if (!req.user || !req.user.membership_status) {
+    return res.status(403).send("Forbidden");
+  }
   const id = req.user.id;
   const errors = validationResult(req);
   if (!errors.isEmpty()) {

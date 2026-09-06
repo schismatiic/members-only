@@ -19,9 +19,15 @@ const validateMessage = [
 ];
 
 const getCreateMessage = (req, res) => {
+  if (!req.user || !req.user.membership_status) {
+    return res.status(403).send("Forbidden");
+  }
   res.render("create-message", { title: "", message: "", user: req.user });
 };
 const createMessage = async (req, res) => {
+  if (!req.user || !req.user.membership_status) {
+    return res.status(403).send("Forbidden");
+  }
   const msg = req.body;
   const user = req.user;
   const errors = validationResult(req);
@@ -38,6 +44,9 @@ const createMessage = async (req, res) => {
   res.redirect("/");
 };
 const removeMessage = async (req, res) => {
+  if (!req.user || !req.user.admin_status) {
+    return res.status(403).send("Forbidden");
+  }
   const { id } = req.params;
   await db.removeMessage(id);
   res.redirect("/");
