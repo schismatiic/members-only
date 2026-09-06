@@ -1,8 +1,6 @@
 const db = require("../db/queries");
 const { body, validationResult, matchedData } = require("express-validator");
 
-process.loadEnvFile();
-
 const validateBecome = [
   body("password")
     .trim()
