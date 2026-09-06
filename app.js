@@ -12,7 +12,6 @@ const messageRouter = require("./routes/messageRouter");
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 
-process.loadEnvFile();
 app.use(
   session({
     secret: process.env.SESSION_SECRET,
