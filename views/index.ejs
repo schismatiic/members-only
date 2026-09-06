@@ -25,7 +25,7 @@
                                 <% messages.forEach(msg=> { %>
                                     <li>
                                         <%- include("message-card", {user, id: msg.id, title: msg.title, message:
-                                            msg.message, author: msg.user }) %>
+                                            msg.message, author: msg.user, added: msg.added }) %>
                                     </li>
                                     <% }); %>
 
