@@ -29,6 +29,10 @@ app.use("/auth", authRouter);
 app.use("/membership", membershipRouter);
 app.use("/message", messageRouter);
 app.use("/", indexRouter);
+app.use((err, req, res, next) => {
+  console.error(err);
+  res.status(err.statusCode || 500).send(err.message);
+});
 
 app.listen(3000, (error) => {
   if (error) {
