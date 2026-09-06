@@ -6,9 +6,15 @@ const createSignUp = async (firstName, lastName, username, email, password) => {
     [firstName, lastName, username, email, password],
   );
 };
+const createMessage = async (title, message, user_fk) => {
+  await pool.query(
+    "INSERT INTO messages (title, message, user_fk) VALUES ($1, $2, $3);",
+    [title, message, user_fk],
+  );
+};
 const getAllMessages = async () => {
   const { rows } = await pool.query(
-    "SELECT messages.id, messages.title, messages.added, users.username AS user FROM messages INNER JOIN users ON messages.user_fk = users.id",
+    "SELECT messages.id, messages.title, messages.message, messages.added, users.username AS user FROM messages INNER JOIN users ON messages.user_fk = users.id",
   );
   return rows;
 };
@@ -43,6 +49,7 @@ const updateMembership = async (id) => {
 module.exports = {
   getAllMessages,
   createSignUp,
+  createMessage,
   getUsername,
   getUserById,
   getEmail,

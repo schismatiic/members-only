@@ -1,0 +1,26 @@
+<li class="flex flex-col gap-2 md:items-center md:flex-row md:justify-between border border-white/20 p-4">
+    <div>
+        <h3 class="font-bold">
+            <%= title %>
+        </h3>
+        <p class="text-sm">
+            <span class="font-bold">Message:</span>
+            <%= message %>
+        </p>
+        <% if (user && user.membership_status) { %>
+            <p class="text-sm">
+                <span class="font-bold">Author:</span>
+                <%= author %>
+            </p>
+            <% } %>
+
+    </div>
+    <% if (user && user.admin_status) { %>
+
+        <div class="flex gap-2">
+            <a href="/message/delete"
+                class="bg-white text-black px-4 py-1 cursor-pointer hover:bg-white/95 active:scale-95">Delete</a>
+        </div>
+        <% } %>
+
+</li>

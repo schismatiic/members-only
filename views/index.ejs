@@ -10,21 +10,36 @@
 
 <body class="flex flex-col min-h-screen bg-black text-white font-extralight">
     <%- include('header', {user, route: "index" }) %>
-        <main class="flex flex-col md:flex-row flex-1 mt-2 ">
-            <div class="p-4 m-4 border border-white/20 md:w-8/12">
-                <% if (messages.length!==0) { %>
-                    <% messages.forEach(message=> { %>
-                        <%= message.username %>
-                            <% }); %>
-                                <% } else {%>
-                                    <p class="flex justify-center text-white/80">No messages yet.</p>
-                                    <% } %>
+        <% if (user && user.membership_status) { %>
+            <div class="m-4 mt-6 mb-0">
+                <a href="/message/create"
+                    class="bg-white text-black px-4 py-2 cursor-pointer hover:bg-white/95 active:scale-95">+
+                    New
+                    message</a>
             </div>
-            <%- include("membership-card", {user}) %>
-        </main>
+            <% } %>
+                <main class="flex flex-col md:flex-row flex-1 mt-2 ">
+                    <div class="p-4 m-4 border border-white/20 md:w-8/12">
+                        <% if (messages.length!==0) { %>
+                            <ul class="flex flex-col max-h-100 gap-2 overflow-y-auto">
+                                <% messages.forEach(msg=> { %>
+                                    <li>
+                                        <%- include("message-card", {user, title: msg.title, message: msg.message,
+                                            author: msg.user }) %>
+                                    </li>
+                                    <% }); %>
+
+                            </ul>
+
+                            <% } else {%>
+                                <p class="flex justify-center text-white/80">No messages yet.</p>
+                                <% } %>
+                    </div>
+                    <%- include("membership-card", {user}) %>
+                </main>
 
 
-        <%- include('footer') %>
+                <%- include('footer') %>
 
 </body>
 

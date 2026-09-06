@@ -30,7 +30,7 @@
                         class="bg-white border border-white/20 text-black px-4 py-1 cursor-pointer hover:bg-white/90 active:scale-95">
                         Sign Up
                     </a>
-                    <% } else if (user && route==="index" ) { %>
+                    <% } else if (user && route==="index" && !user.membership_status ) { %>
                         <a href="membership/become"
                             class="text-white border border-white/20 px-4 py-1 cursor-pointer hover:bg-gray-900 active:scale-95">
                             Become a member
@@ -39,15 +39,33 @@
                             class="bg-white border border-white/20 text-black px-4 py-1 cursor-pointer hover:bg-white/90 active:scale-95">
                             Log Out
                         </a>
-                        <% } else if (route==="become" ) { %>
+                        <% } else if (user && !user.membership_status && route==="become" ) { %>
                             <a href="/"
                                 class="text-white border border-white/20 px-4 py-1 cursor-pointer hover:bg-gray-900 active:scale-95">
                                 Home
                             </a>
-                            <a href="log-out"
+                            <a href="auth/log-out"
                                 class="bg-white border border-white/20 text-black px-4 py-1 cursor-pointer hover:bg-white/90 active:scale-95">
                                 Log Out
                             </a>
-                            <% } %>
+                            <% } else if (user && user.membership_status && route==="message" ) { %>
+                                <a href="/"
+                                    class="text-white border border-white/20 px-4 py-1 cursor-pointer hover:bg-gray-900 active:scale-95">
+                                    Home
+                                </a>
+                                <a href="auth/log-out"
+                                    class="bg-white border border-white/20 text-black px-4 py-1 cursor-pointer hover:bg-white/90 active:scale-95">
+                                    Log Out
+                                </a>
+                                <% } else if (user && user.membership_status) { %>
+                                    <a href="membership/admin"
+                                        class="text-white border border-white/20 px-4 py-1 cursor-pointer hover:bg-gray-900 active:scale-95">
+                                        Become an admin
+                                    </a>
+                                    <a href="auth/log-out"
+                                        class="bg-white border border-white/20 text-black px-4 py-1 cursor-pointer hover:bg-white/90 active:scale-95">
+                                        Log Out
+                                    </a>
+                                    <% } %>
     </div>
 </header>

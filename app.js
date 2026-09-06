@@ -7,6 +7,7 @@ const passport = require("./passport/passport");
 const indexRouter = require("./routes/indexRouter");
 const authRouter = require("./routes/authRouter");
 const membershipRouter = require("./routes/membershipRouter");
+const messageRouter = require("./routes/messageRouter");
 
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
@@ -26,6 +27,7 @@ app.use(express.static("public"));
 
 app.use("/auth", authRouter);
 app.use("/membership", membershipRouter);
+app.use("/message", messageRouter);
 app.use("/", indexRouter);
 
 app.listen(3000, (error) => {

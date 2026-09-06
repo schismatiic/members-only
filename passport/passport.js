@@ -10,9 +10,7 @@ passport.use(
     },
     async (identifier, password, done) => {
       try {
-        console.log(identifier);
         const user = await db.getIdentifier(identifier);
-        console.log(user);
         if (!user) {
           return done(null, false, { message: "Incorrect username or email" });
         }
